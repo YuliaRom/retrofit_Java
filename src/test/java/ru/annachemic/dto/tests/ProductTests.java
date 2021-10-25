@@ -62,7 +62,7 @@ public class ProductTests {
                 .execute();
         Integer countProductsAfter = DbUtils.countProducts(productsMapper);
 
-        assertThat(countProductsAfter, equalTo((countProductsBefore+1)));
+        assertThat(countProductsAfter, equalTo(countProductsBefore+1));
         assertThat(response.body().getTitle(), equalTo(product.getTitle()));
         assertThat(response.body().getPrice(), equalTo(product.getPrice()));
         assertThat(response.body().getCategoryTitle(), equalTo(product.getCategoryTitle()));
