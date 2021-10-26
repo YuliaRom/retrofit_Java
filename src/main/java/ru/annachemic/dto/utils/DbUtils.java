@@ -11,6 +11,7 @@ import ru.annachemic.dao.CategoriesMapper;
 import ru.annachemic.dao.ProductsMapper;
 import ru.annachemic.model.Categories;
 import ru.annachemic.model.CategoriesExample;
+import ru.annachemic.model.Products;
 import ru.annachemic.model.ProductsExample;
 
 import java.io.IOException;
@@ -27,10 +28,14 @@ public class DbUtils {
     }
 
     @SneakyThrows
-    public static CategoriesMapper getCategoriesMapper() {return getSqlSession().getMapper(CategoriesMapper.class);}
+    public static CategoriesMapper getCategoriesMapper() {
+        return getSqlSession().getMapper(CategoriesMapper.class);
+    }
 
     @SneakyThrows
-    public static ProductsMapper getProductsMapper() {return getSqlSession().getMapper(ProductsMapper.class);}
+    public static ProductsMapper getProductsMapper() {
+        return getSqlSession().getMapper(ProductsMapper.class);
+    }
 
     public static void createNewCategory(CategoriesMapper categoriesMapper) {
         Categories newCategory = new Categories();
@@ -45,7 +50,8 @@ public class DbUtils {
     }
 
     public static Integer countProducts(ProductsMapper productsMapper) {
-        long products  = productsMapper.countByExample(new ProductsExample());
+        long products = productsMapper.countByExample(new ProductsExample());
         return Math.toIntExact(products);
     }
+
 }

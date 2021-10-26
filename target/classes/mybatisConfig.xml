@@ -16,8 +16,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource=""/>
-        <mapper resource=""/>
+        <mapper resource="ru/annachemic/mapper/xml/CategoriesMapper.xml"/>
+        <mapper resource="ru/annachemic/mapper/xml/ProductsMapper.xml"/>
     </mappers>
 </configuration>
 
