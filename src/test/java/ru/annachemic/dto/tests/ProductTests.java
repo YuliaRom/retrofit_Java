@@ -64,9 +64,9 @@ public class ProductTests {
         Integer countProductsBefore = DbUtils.countProducts(productsMapper);
         Response<Product> response = productService.createProduct(product)
                 .execute();
-        Integer countProductsAfter = DbUtils.countProducts(productsMapper);
+        Integer countProductsAfter = DbUtils.countProducts(DbUtils.getProductsMapper());
 
-     //   assertThat(countProductsAfter, equalTo(countProductsBefore+1));
+        assertThat(countProductsAfter, equalTo(countProductsBefore+1));
         assertThat(response.body().getTitle(), equalTo(product.getTitle()));
         assertThat(response.body().getPrice(), equalTo(product.getPrice()));
         assertThat(response.body().getCategoryTitle(), equalTo(product.getCategoryTitle()));
@@ -113,7 +113,9 @@ public class ProductTests {
         assertThat(response.body().getTitle(), equalTo(myProduct.getTitle()));
         assertThat(response.body().getPrice(), equalTo(myProduct.getPrice()));
         assertThat(response.body().getCategoryTitle(), equalTo(myProduct.getCategoryTitle()));
-        Integer MaxValueOfCategories = DbUtils.countCategories(categoriesMapper);
+        Integer CountCategories = DbUtils.countCategories(categoriesMapper);
+
+        System.out.println(CountCategories);
 
     }
 
@@ -132,12 +134,12 @@ public class ProductTests {
     @Order(6)
     @Test
     void deleteProductsTest() throws IOException {
-        Integer countProductsBefore = DbUtils.countProducts(productsMapper);
+        Integer countProductsBefore = DbUtils.countProducts(DbUtils.getProductsMapper());
         Integer id = myProduct.getId();
         Response<ResponseBody> response = productService.deleteProduct(id)
                .execute();
-        Integer countProductsAfter = DbUtils.countProducts(productsMapper);
-     //   assertThat(countProductsAfter, equalTo((countProductsBefore-1)));
+        Integer countProductsAfter = DbUtils.countProducts(DbUtils.getProductsMapper());
+        assertThat(countProductsAfter, equalTo((countProductsBefore-1)));
         assertThat(response.isSuccessful(), equalTo(true));
 
     }
